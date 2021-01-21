@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input id="acc"> <br>
+<input id="pwd"> <br>
+<input id="phone"> <br>
+<input id="email"> <br>
+<button onclick="bitMe()">clink me</button>
+<hr/>
+<form action="http://localhost:8080/exam_qb_ssm/uploadImage" method="post" enctype="multipart/form-data">
+    <input type="file" name="file1"> <br>
+    <button>上传</button>
+</form>
+
+</body>
+<script src="js/jquery-3.5.1.js"></script>
+<script>
+    function bitMe(){
+        let JsonDate = {};
+        JsonDate.acc=$("#acc").val();
+        JsonDate.pwd=$("#pwd").val();
+        JsonDate.phone=$("#phone").val();
+        JsonDate.email=$("#email").val();
+
+        $.ajax({
+            url:"http://localhost:8080/exam_qb_ssm/userRegister",
+            type:"post",
+            // data:JsonDate,
+            data:JSON.stringify(JsonDate),
+            contentType:"application/json",
+            dataType:"json",
+            success:function (result){
+                console.log(result);
+            }
+        })
+    }
+</script>
+</html>
