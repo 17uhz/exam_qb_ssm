@@ -1,8 +1,13 @@
 package com.tledu.cn.service.Impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.tledu.cn.dao.UserDao;
+import com.tledu.cn.pojo.Answer;
+import com.tledu.cn.pojo.Classify;
 import com.tledu.cn.pojo.User;
 import com.tledu.cn.service.UserService;
+import com.tledu.cn.util.PageUtils;
 import com.tledu.cn.util.TimeUtil;
 import com.tledu.cn.util.UpLoadUtil;
 import org.apache.commons.fileupload.FileItem;
@@ -18,10 +23,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Author:17
@@ -165,5 +167,101 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
+    //添加分类
+    @Override
+    public int addClassify(HttpServletRequest request,Classify classify) {
+        int result=0;
+        if(classify==null){
+            return result;
+        }
+        List<Classify> classifyList=userDao.selectClassify(classify);
+        if (classifyList.size()==0){
+            classify.setC_id(UUID.randomUUID().toString());
+            User user=(User)request.getSession().getAttribute("Info");
+            classify.setU_id(user.getU_id());
+            classify.setCreat_time(TimeUtil.createTime());
+            classify.setIs_delete(0);
+            int i=userDao.addClassify(classify);
+            result=i;
+        }
+        return result;
+    }
 
+    //删除分类
+    @Override
+    public int deleteClassify(Classify classify) {
+        int result=0;
+        classify.setIs_delete(1);
+        result =userDao.deleteClassify(classify);
+        return result;
+    }
+
+    //显示分类
+    @Override
+    public List<Classify> getClassifyInfo(HttpServletRequest request) {
+        User user=(User)request.getSession().getAttribute("Info");
+        List<Classify> classifyList=userDao.getClassifyInfo(user);
+        return classifyList;
+    }
+
+    //添加题目
+    @Override
+    public int addAnswer(HttpServletRequest request, Answer answer) {
+        int result=0;
+        if (answer==null){
+            return result;
+        }
+        List<Answer> answerList=userDao.selectAnswer(answer);
+        if (answerList==null){
+            answer.setA_id(UUID.randomUUID().toString());
+            User user=(User)request.getSession().getAttribute("Info");
+            answer.setU_id(user.getU_id());
+            Classify classify=userDao.selectClassifyID(answer);
+            answer.setC_id(classify.getC_id());
+            answer.setA_modify_time(TimeUtil.createTime());
+            answer.setIs_delete(0);
+            result=userDao.addAnswer(answer);
+        }
+        return result;
+    }
+
+    //删除题目
+    @Override
+    public int deleteAnswer(ArrayList<String> IdList) {
+        int n=0;
+        for (int i=0;i<=IdList.size();i++){
+            Answer answer=new Answer();
+            answer.setA_id(IdList.get(i));
+            answer.setIs_delete(1);
+            n=n+(userDao.deleteAnswer(answer));
+        }
+        return n;
+    }
+
+    //修改题目
+    @Override
+    public int modifyAnswer(Answer answer) {
+        Classify classify=userDao.selectClassifyID(answer);
+        answer.setC_id(classify.getC_id());
+        answer.setA_modify_time(TimeUtil.createTime());
+        int i=userDao.modifyAnswer(answer);
+        return i;
+    }
+
+    //题目显示
+    @Override
+    public PageUtils getTopicInfo(Map<String, Object> param) {
+        PageHelper.offsetPage(Integer.parseInt(param.get("offset").toString()),Integer.parseInt(param.get("pageSize").toString()));
+        List<Answer> answerList=userDao.getTopicInfo();
+        PageInfo<Answer> pageInfo=new PageInfo<Answer>(answerList);
+        return new PageUtils(new Long(pageInfo.getTotal()).intValue(),pageInfo.getList());
+    }
+
+    //显示单道题目
+
+    @Override
+    public Answer getAnswerById(Answer answer) {
+        Answer answer1=userDao.getAnswerById(answer);
+        return answer1;
+    }
 }

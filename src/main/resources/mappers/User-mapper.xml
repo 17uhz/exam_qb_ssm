@@ -29,5 +29,47 @@
         update exam_user set image=#{image} where u_id=#{u_id} and is_delete=0
     </update>
 
+    <select id="selectClassify" parameterType="string" resultType="Classify">
+        select * from exam_classify where c_name=#{c_name} and is_delete=0
+    </select>
 
+    <insert id="addClassify" parameterType="Classify">
+        insert into exam_classify values (#{c_id},#{c_name},#{u_id},#{creat_time},#{is_delete})
+    </insert>
+
+    <delete id="deleteClassify" parameterType="String">
+        update exam_classify set is_delete=#{is_delete} where c_name=#{c_name}
+    </delete>
+
+    <select id="getClassifyInfo" parameterType="string" resultType="Classify">
+        select * from exam_classify where u_id=#{u_id} and is_delete=0
+    </select>
+
+    <select id="selectAnswer" parameterType="string" resultType="Answer">
+        select * from exam_answer where a_topic=#{a_topic} and is_delete=0
+    </select>
+
+    <select id="selectClassifyID" parameterType="String" resultType="Classify">
+        select * from exam_classify where c_name=#{c_name}
+    </select>
+
+    <insert id="addAnswer" parameterType="Answer">
+        insert into exam_answer values (#{a_id},#{type},#{a_topic},#{u_id},#{a_a},#{a_b},#{a_c},#{a_d},#{c_id},#{c_name},#{a_answer},#{a_score},#{a_modify_time},#{is_delete})
+    </insert>
+
+    <update id="deleteAnswer" parameterType="Answer">
+        update exam_answer set is_delete=#{is_delete} where a_id=#{a_id}
+    </update>
+
+    <update id="modifyAnswer" parameterType="Answer">
+        update exam_answer set type=#{type} and a_topc=#{a_topic} and a_a=#{a_a} and a_b=#{a_b} and a_c=#{a_c} and a_d=#{a_d} and c_id=#{c_id} and c_name=#{c_name}  and a_answer=#{a_answer} and a_score=#{a_score} and a_modify_time=#{a_modify_time} where a_id=#{a_id} and is_delete=0
+    </update>
+
+    <select id="getTopicInfo" resultType="Answer">
+        select * from exam_answer order by a_modify_time desc
+    </select>
+
+    <select id="getAnswerById" parameterType="string" resultType="Answer">
+        select * from exam_answer where a_id=#{a_id}
+    </select>
 </mapper>

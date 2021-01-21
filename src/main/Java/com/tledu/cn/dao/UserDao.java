@@ -1,5 +1,7 @@
 package com.tledu.cn.dao;
 
+import com.tledu.cn.pojo.Answer;
+import com.tledu.cn.pojo.Classify;
 import com.tledu.cn.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -18,6 +20,21 @@ public interface UserDao {
     List<User> selectUserAccPhone(User user); //查看是否存在 acc ，phone 一致的用户，一致，后续用于更改密码
     int changePwd(User user);
     int upLoadImage(User user);
+
+    List<Classify> selectClassify(Classify classify); //查看 分类名 是否存在
+    int addClassify(Classify classify);
+    int deleteClassify(Classify classify);
+    List<Classify> getClassifyInfo(User user);
+
+    List<Answer> selectAnswer(Answer answer);//查看 题目名 是否存在
+    Classify selectClassifyID(Answer answer);
+    int addAnswer(Answer answer);
+    int deleteAnswer(Answer answer);
+    int modifyAnswer(Answer answer);
+    List<Answer> getTopicInfo();
+    Answer getAnswerById(Answer answer);
+
+
 }
 
 
