@@ -54,7 +54,7 @@
     </select>
 
     <insert id="addAnswer" parameterType="Answer">
-        insert into exam_answer values (#{aId},#{type},#{aTopic},#{uId},#{aA},#{aB},#{aC},#{aD},#{cId},#{cName},#{aAnswer},#{aScore},#{aModifyTime},#{isDelete})
+        insert into exam_answer values (#{aId},#{aType},#{aTopic},#{uId},#{aA},#{aB},#{aC},#{aD},#{cId},#{cName},#{aAnswer},#{aScore},#{aModifyTime},#{isDelete})
     </insert>
 
     <update id="deleteAnswer" parameterType="Answer">
@@ -62,11 +62,11 @@
     </update>
 
     <update id="modifyAnswer" parameterType="Answer">
-        update exam_answer set type=#{type} and a_topc=#{aTopic} and a_a=#{aA} and a_b=#{aB} and a_c=#{aC} and a_d=#{aD} and c_id=#{cId} and c_name=#{cName}  and a_answer=#{aAnswer} and a_score=#{aScore} and a_modify_time=#{aModifyTime} where a_id=#{aId} and is_delete=0
+        update exam_answer set a_type=#{aType},a_topic=#{aTopic},a_a=#{aA},a_b=#{aB},a_c=#{aC},a_d=#{aD},c_id=#{cId},c_name=#{cName},a_answer=#{aAnswer},a_score=#{aScore},a_modify_time=#{aModifyTime} where a_id=#{aId} and is_delete=0
     </update>
 
     <select id="getTopicInfo" parameterType="string" resultType="Answer">
-        select * from exam_answer where u_id=#{value} order by a_modify_time desc
+        select * from exam_answer where u_id=#{value} and is_delete=0 order by a_modify_time desc
     </select>
 
     <select id="getAnswerById" parameterType="string" resultType="Answer">
