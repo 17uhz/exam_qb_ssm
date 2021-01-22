@@ -44,10 +44,10 @@ public class UserServiceImpl implements UserService {
         }
         List<User> users = userDao.selectUser(user);
         if (users.size()==0){
-            user.setU_id(UUID.randomUUID().toString());
-            user.setIs_delete(0);
-            user.setCreate_time(TimeUtil.createTime());
-            user.setIs_allow(1);
+            user.setuId(UUID.randomUUID().toString());
+            user.setIsDelete(0);
+            user.setCreateTime(TimeUtil.createTime());
+            user.setIsAllow(1);
             user.setImage("../image/init/init.jpg");
             result = userDao.registerUser(user);
         }
@@ -177,9 +177,9 @@ public class UserServiceImpl implements UserService {
         }
         List<Classify> classifyList=userDao.selectClassify(classify);
         if (classifyList.size()==0){
-            classify.setC_id(UUID.randomUUID().toString());
-            classify.setCreat_time(TimeUtil.createTime());
-            classify.setIs_delete(0);
+            classify.setcId(UUID.randomUUID().toString());
+            classify.setCreatTime(TimeUtil.createTime());
+            classify.setIsDelete(0);
             int i=userDao.addClassify(classify);
             result=i;
         }
@@ -190,7 +190,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public int deleteClassify(Classify classify) {
         int result=0;
-        classify.setIs_delete(1);
+        classify.setIsDelete(1);
         result =userDao.deleteClassify(classify);
         return result;
     }
@@ -212,11 +212,11 @@ public class UserServiceImpl implements UserService {
         }
         List<Answer> answerList=userDao.selectAnswer(answer);
         if (answerList==null){
-            answer.setA_id(UUID.randomUUID().toString());
+            answer.setaId(UUID.randomUUID().toString());
             Classify classify=userDao.selectClassifyID(answer);
-            answer.setC_id(classify.getC_id());
-            answer.setA_modify_time(TimeUtil.createTime());
-            answer.setIs_delete(0);
+            answer.setcId(classify.getcId());
+            answer.setaModifyTime(TimeUtil.createTime());
+            answer.setIsDelete(0);
             result=userDao.addAnswer(answer);
         }
         return result;
@@ -228,8 +228,8 @@ public class UserServiceImpl implements UserService {
         int n=0;
         for (int i=0;i<=IdList.size();i++){
             Answer answer=new Answer();
-            answer.setA_id(IdList.get(i));
-            answer.setIs_delete(1);
+            answer.setaId(IdList.get(i));
+            answer.setIsDelete(1);
             n=n+(userDao.deleteAnswer(answer));
         }
         return n;
@@ -239,8 +239,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public int modifyAnswer(Answer answer) {
         Classify classify=userDao.selectClassifyID(answer);
-        answer.setC_id(classify.getC_id());
-        answer.setA_modify_time(TimeUtil.createTime());
+        answer.setcId(classify.getcId());
+        answer.setaModifyTime(TimeUtil.createTime());
         int i=userDao.modifyAnswer(answer);
         return i;
     }
@@ -249,7 +249,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public PageUtils getTopicInfo(Map<String, Object> param) {
         PageHelper.offsetPage(Integer.parseInt(param.get("offset").toString()),Integer.parseInt(param.get("pageSize").toString()));
-        List<Answer> answerList=userDao.getTopicInfo();
+        List<Answer> answerList=userDao.getTopicInfo((String) param.get("uId"));
         PageInfo<Answer> pageInfo=new PageInfo<Answer>(answerList);
         return new PageUtils(new Long(pageInfo.getTotal()).intValue(),pageInfo.getList());
     }

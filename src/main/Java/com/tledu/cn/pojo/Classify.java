@@ -1,71 +1,71 @@
 package com.tledu.cn.pojo;
 
 public class Classify {
-    private String c_id;
-    private String c_name;
-    private String u_id;
-    private String creat_time;
-    private int is_delete;
+    private String cId;
+    private String cName;
+    private String uId;
+    private String creatTime;
+    private int isDelete;
 
-    public Classify(String c_id, String c_name, String u_id, String creat_time, int is_delete) {
-        this.c_id = c_id;
-        this.c_name = c_name;
-        this.u_id = u_id;
-        this.creat_time = creat_time;
-        this.is_delete = is_delete;
+    public Classify(String cId, String cName, String uId, String creatTime, int isDelete) {
+        this.cId = cId;
+        this.cName = cName;
+        this.uId = uId;
+        this.creatTime = creatTime;
+        this.isDelete = isDelete;
     }
 
     public Classify() {
     }
 
-    public String getC_id() {
-        return c_id;
+    public String getcId() {
+        return cId;
     }
 
-    public void setC_id(String c_id) {
-        this.c_id = c_id;
+    public void setcId(String cId) {
+        this.cId = cId;
     }
 
-    public String getC_name() {
-        return c_name;
+    public String getcName() {
+        return cName;
     }
 
-    public void setC_name(String c_name) {
-        this.c_name = c_name;
+    public void setcName(String cName) {
+        this.cName = cName;
     }
 
-    public String getU_id() {
-        return u_id;
+    public String getuId() {
+        return uId;
     }
 
-    public void setU_id(String u_id) {
-        this.u_id = u_id;
+    public void setuId(String uId) {
+        this.uId = uId;
     }
 
-    public String getCreat_time() {
-        return creat_time;
+    public String getCreatTime() {
+        return creatTime;
     }
 
-    public void setCreat_time(String creat_time) {
-        this.creat_time = creat_time;
+    public void setCreatTime(String creatTime) {
+        this.creatTime = creatTime;
     }
 
-    public int getIs_delete() {
-        return is_delete;
+    public int getIsDelete() {
+        return isDelete;
     }
 
-    public void setIs_delete(int is_delete) {
-        this.is_delete = is_delete;
+    public void setIsDelete(int isDelete) {
+        this.isDelete = isDelete;
     }
 
     @Override
     public String toString() {
         return "Classify{" +
-                "c_id='" + c_id + '\'' +
-                ", c_name='" + c_name + '\'' +
-                ", u_id='" + u_id + '\'' +
-                ", creat_time='" + creat_time + '\'' +
-                ", is_delete=" + is_delete +
+                "cId='" + cId + '\'' +
+                ", cName='" + cName + '\'' +
+                ", uId='" + uId + '\'' +
+                ", creatTime='" + creatTime + '\'' +
+                ", isDelete=" + isDelete +
                 '}';
     }
 }

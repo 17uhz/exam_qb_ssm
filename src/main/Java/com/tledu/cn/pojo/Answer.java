@@ -1,47 +1,47 @@
 package com.tledu.cn.pojo;
 
 public class Answer {
-    private String a_id;
+    private String aId;
     private String type;
-    private String a_topic;
-    private String u_id;
-    private String a_a;
-    private String a_b;
-    private String a_c;
-    private String a_d;
-    private String c_id;
-    private String c_name;
-    private String a_answer;
-    private int a_score;
-    private String a_modify_time;
-    private int is_delete;
+    private String aTopic;
+    private String uId;
+    private String aA;
+    private String aB;
+    private String aC;
+    private String aD;
+    private String cId;
+    private String cName;
+    private String aAnswer;
+    private int aScore;
+    private String aModifyTime;
+    private int isDelete;
 
-    public Answer(String a_id, String type, String a_topic, String u_id, String a_a, String a_b, String a_c, String a_d, String c_id, String c_name, String a_answer, int a_score, String a_modify_time, int is_delete) {
-        this.a_id = a_id;
+    public Answer(String aId, String type, String aTopic, String uId, String aA, String aB, String aC, String aD, String cId, String cName, String aAnswer, int aScore, String aModifyTime, int isDelete) {
+        this.aId = aId;
         this.type = type;
-        this.a_topic = a_topic;
-        this.u_id = u_id;
-        this.a_a = a_a;
-        this.a_b = a_b;
-        this.a_c = a_c;
-        this.a_d = a_d;
-        this.c_id = c_id;
-        this.c_name = c_name;
-        this.a_answer = a_answer;
-        this.a_score = a_score;
-        this.a_modify_time = a_modify_time;
-        this.is_delete = is_delete;
+        this.aTopic = aTopic;
+        this.uId = uId;
+        this.aA = aA;
+        this.aB = aB;
+        this.aC = aC;
+        this.aD = aD;
+        this.cId = cId;
+        this.cName = cName;
+        this.aAnswer = aAnswer;
+        this.aScore = aScore;
+        this.aModifyTime = aModifyTime;
+        this.isDelete = isDelete;
     }
 
     public Answer() {
     }
 
-    public String getA_id() {
-        return a_id;
+    public String getaId() {
+        return aId;
     }
 
-    public void setA_id(String a_id) {
-        this.a_id = a_id;
+    public void setaId(String aId) {
+        this.aId = aId;
     }
 
     public String getType() {
@@ -52,119 +52,119 @@ public class Answer {
         this.type = type;
     }
 
-    public String getA_topic() {
-        return a_topic;
+    public String getaTopic() {
+        return aTopic;
     }
 
-    public void setA_topic(String a_topic) {
-        this.a_topic = a_topic;
+    public void setaTopic(String aTopic) {
+        this.aTopic = aTopic;
     }
 
-    public String getU_id() {
-        return u_id;
+    public String getuId() {
+        return uId;
     }
 
-    public void setU_id(String u_id) {
-        this.u_id = u_id;
+    public void setuId(String uId) {
+        this.uId = uId;
     }
 
-    public String getA_a() {
-        return a_a;
+    public String getaA() {
+        return aA;
     }
 
-    public void setA_a(String a_a) {
-        this.a_a = a_a;
+    public void setaA(String aA) {
+        this.aA = aA;
     }
 
-    public String getA_b() {
-        return a_b;
+    public String getaB() {
+        return aB;
     }
 
-    public void setA_b(String a_b) {
-        this.a_b = a_b;
+    public void setaB(String aB) {
+        this.aB = aB;
     }
 
-    public String getA_c() {
-        return a_c;
+    public String getaC() {
+        return aC;
     }
 
-    public void setA_c(String a_c) {
-        this.a_c = a_c;
+    public void setaC(String aC) {
+        this.aC = aC;
     }
 
-    public String getA_d() {
-        return a_d;
+    public String getaD() {
+        return aD;
     }
 
-    public void setA_d(String a_d) {
-        this.a_d = a_d;
+    public void setaD(String aD) {
+        this.aD = aD;
     }
 
-    public String getC_id() {
-        return c_id;
+    public String getcId() {
+        return cId;
     }
 
-    public void setC_id(String c_id) {
-        this.c_id = c_id;
+    public void setcId(String cId) {
+        this.cId = cId;
     }
 
-    public String getC_name() {
-        return c_name;
+    public String getcName() {
+        return cName;
     }
 
-    public void setC_name(String c_name) {
-        this.c_name = c_name;
+    public void setcName(String cName) {
+        this.cName = cName;
     }
 
-    public String getA_answer() {
-        return a_answer;
+    public String getaAnswer() {
+        return aAnswer;
     }
 
-    public void setA_answer(String a_answer) {
-        this.a_answer = a_answer;
+    public void setaAnswer(String aAnswer) {
+        this.aAnswer = aAnswer;
     }
 
-    public int getA_score() {
-        return a_score;
+    public int getaScore() {
+        return aScore;
     }
 
-    public void setA_score(int a_score) {
-        this.a_score = a_score;
+    public void setaScore(int aScore) {
+        this.aScore = aScore;
     }
 
-    public String getA_modify_time() {
-        return a_modify_time;
+    public String getaModifyTime() {
+        return aModifyTime;
     }
 
-    public void setA_modify_time(String a_modify_time) {
-        this.a_modify_time = a_modify_time;
+    public void setaModifyTime(String aModifyTime) {
+        this.aModifyTime = aModifyTime;
     }
 
-    public int getIs_delete() {
-        return is_delete;
+    public int getIsDelete() {
+        return isDelete;
     }
 
-    public void setIs_delete(int is_delete) {
-        this.is_delete = is_delete;
+    public void setIsDelete(int isDelete) {
+        this.isDelete = isDelete;
     }
 
     @Override
     public String toString() {
         return "Answer{" +
-                "a_id='" + a_id + '\'' +
+                "aId='" + aId + '\'' +
                 ", type='" + type + '\'' +
-                ", a_topic='" + a_topic + '\'' +
-                ", u_id='" + u_id + '\'' +
-                ", a_a='" + a_a + '\'' +
-                ", a_b='" + a_b + '\'' +
-                ", a_c='" + a_c + '\'' +
-                ", a_d='" + a_d + '\'' +
-                ", c_id='" + c_id + '\'' +
-                ", c_name='" + c_name + '\'' +
-                ", a_answer='" + a_answer + '\'' +
-                ", a_score=" + a_score +
-                ", a_modify_time='" + a_modify_time + '\'' +
-                ", is_delete=" + is_delete +
+                ", aTopic='" + aTopic + '\'' +
+                ", uId='" + uId + '\'' +
+                ", aA='" + aA + '\'' +
+                ", aB='" + aB + '\'' +
+                ", aC='" + aC + '\'' +
+                ", aD='" + aD + '\'' +
+                ", cId='" + cId + '\'' +
+                ", cName='" + cName + '\'' +
+                ", aAnswer='" + aAnswer + '\'' +
+                ", aScore=" + aScore +
+                ", aModifyTime='" + aModifyTime + '\'' +
+                ", isDelete=" + isDelete +
                 '}';
     }
 }

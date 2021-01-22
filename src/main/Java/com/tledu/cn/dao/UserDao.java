@@ -31,7 +31,7 @@ public interface UserDao {
     int addAnswer(Answer answer);
     int deleteAnswer(Answer answer);
     int modifyAnswer(Answer answer);
-    List<Answer> getTopicInfo();
+    List<Answer> getTopicInfo(String uId);
     Answer getAnswerById(Answer answer);
 
 

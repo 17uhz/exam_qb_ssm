@@ -6,52 +6,37 @@ package com.tledu.cn.pojo;
  * Description:<描述>
  */
 public class User {
-    private String u_id;
+    private String uId;
     private String acc;
     private String pwd;
     private String phone;
     private String email;
     private String image;
-    private int is_allow;
-    private String create_time;
-    private int is_delete;
+    private int isAllow;
+    private String createTime;
+    private int isDelete;
 
     public User() {
     }
 
-    public User(String u_id, String acc, String pwd, String phone, String email, String image, int is_allow, String create_time, int is_delete) {
-        this.u_id = u_id;
+    public User(String uId, String acc, String pwd, String phone, String email, String image, int isAllow, String createTime, int isDelete) {
+        this.uId = uId;
         this.acc = acc;
         this.pwd = pwd;
         this.phone = phone;
         this.email = email;
         this.image = image;
-        this.is_allow = is_allow;
-        this.create_time = create_time;
-        this.is_delete = is_delete;
+        this.isAllow = isAllow;
+        this.createTime = createTime;
+        this.isDelete = isDelete;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "u_id='" + u_id + '\'' +
-                ", acc='" + acc + '\'' +
-                ", pwd='" + pwd + '\'' +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                ", image='" + image + '\'' +
-                ", is_allow=" + is_allow +
-                ", create_time='" + create_time + '\'' +
-                ", is_delete=" + is_delete +
-                '}';
+    public String getuId() {
+        return uId;
     }
 
-    public String getU_id() {
-        return u_id;
-    }
-
-    public void setU_id(String u_id) {
-        this.u_id = u_id;
+    public void setuId(String uId) {
+        this.uId = uId;
     }
 
     public String getAcc() {
@@ -94,27 +79,42 @@ public class User {
         this.image = image;
     }
 
-    public int getIs_allow() {
-        return is_allow;
+    public int getIsAllow() {
+        return isAllow;
     }
 
-    public void setIs_allow(int is_allow) {
-        this.is_allow = is_allow;
+    public void setIsAllow(int isAllow) {
+        this.isAllow = isAllow;
     }
 
-    public String getCreate_time() {
-        return create_time;
+    public String getCreateTime() {
+        return createTime;
     }
 
-    public void setCreate_time(String create_time) {
-        this.create_time = create_time;
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 
-    public int getIs_delete() {
-        return is_delete;
+    public int getIsDelete() {
+        return isDelete;
     }
 
-    public void setIs_delete(int is_delete) {
-        this.is_delete = is_delete;
+    public void setIsDelete(int isDelete) {
+        this.isDelete = isDelete;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "uId='" + uId + '\'' +
+                ", acc='" + acc + '\'' +
+                ", pwd='" + pwd + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", image='" + image + '\'' +
+                ", isAllow=" + isAllow +
+                ", createAime='" + createTime + '\'' +
+                ", isDelete=" + isDelete +
+                '}';
     }
 }

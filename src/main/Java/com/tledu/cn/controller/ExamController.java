@@ -46,6 +46,7 @@ public class ExamController {
 
 //        Map<String,String> param = new HashMap<String, String>();
         User getUser= userService.userLogin(request, user);
+        System.out.println(getUser);
 //        if (getUser){
 //            param.put("mark","true");
 //        }else {
@@ -103,9 +104,6 @@ public class ExamController {
     @RequestMapping("/addClassify")
     @ResponseBody
     public Map<String,Integer> addClassify(HttpServletRequest request,@RequestBody Classify classify){
-        System.out.println(classify);
-        classify.setU_id("1");
-        System.out.println(classify);
         int i=userService.addClassify(classify);
         Map<String,Integer> param=new HashMap<String, Integer>();
         param.put("mark",i);
@@ -127,6 +125,7 @@ public class ExamController {
     @RequestMapping("/getClassifyInfo")
     @ResponseBody
     public Map<String, List<Classify>> getClassifyInfo(@RequestBody Classify classify){
+        classify.setuId("1");
         List<Classify> classifyList=userService.getClassifyInfo(classify);
         Map<String,List<Classify>> param=new HashMap<String, List<Classify>>();
         param.put("classifyList",classifyList);

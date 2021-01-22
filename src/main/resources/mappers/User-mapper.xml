@@ -6,7 +6,7 @@
     <insert id="registerUser" parameterType="User">
         insert into exam_user
         values
-        (#{u_id},#{acc},#{pwd},#{phone},#{email},#{image},#{is_allow},#{create_time},#{is_delete})
+        (#{uId},#{acc},#{pwd},#{phone},#{email},#{image},#{isAllow},#{createTime},#{isDelete})
     </insert>
 
     <select id="selectUser" parameterType="string" resultType="User">
@@ -26,50 +26,50 @@
     </update>
 
     <update id="upLoadImage" parameterType="User">
-        update exam_user set image=#{image} where u_id=#{u_id} and is_delete=0
+        update exam_user set image=#{image} where u_id=#{uId} and is_delete=0
     </update>
 
     <select id="selectClassify" parameterType="Classify" resultType="Classify">
-        select * from exam_classify where c_name=#{c_name} and u_id=#{u_id} and is_delete=0
+        select * from exam_classify where c_name=#{cName} and u_id=#{uId} and is_delete=0
     </select>
 
     <insert id="addClassify" parameterType="Classify">
-        insert into exam_classify values (#{c_id},#{c_name},#{u_id},#{creat_time},#{is_delete})
+        insert into exam_classify values (#{cId},#{cName},#{uId},#{creatTime},#{isDelete})
     </insert>
 
     <delete id="deleteClassify" parameterType="Classify">
-        update exam_classify set is_delete=#{is_delete} where c_name=#{c_name} and u_id=#{u_id}
+        update exam_classify set is_delete=#{isDelete} where c_name=#{cName} and u_id=#{uId}
     </delete>
 
-    <select id="getClassifyInfo" parameterType="String" resultType="Classify">
-        select * from exam_classify where u_id=#{u_id} and is_delete=0
+    <select id="getClassifyInfo" parameterType="string" resultType="Classify">
+        select * from exam_classify where u_id=#{uId} and is_delete=0
     </select>
 
     <select id="selectAnswer" parameterType="Answer" resultType="Answer">
-        select * from exam_answer where a_topic=#{a_topic} and u_id=#{u_id} and is_delete=0
+        select * from exam_answer where a_topic=#{aTopic} and u_id=#{uId} and is_delete=0
     </select>
 
     <select id="selectClassifyID" parameterType="Answer" resultType="Classify">
-        select * from exam_classify where c_name=#{c_name} and u_id=#{u_id}
+        select * from exam_classify where c_name=#{cName} and u_id=#{uId}
     </select>
 
     <insert id="addAnswer" parameterType="Answer">
-        insert into exam_answer values (#{a_id},#{type},#{a_topic},#{u_id},#{a_a},#{a_b},#{a_c},#{a_d},#{c_id},#{c_name},#{a_answer},#{a_score},#{a_modify_time},#{is_delete})
+        insert into exam_answer values (#{aId},#{type},#{aTopic},#{uId},#{aA},#{aB},#{aC},#{aD},#{cId},#{cName},#{aAnswer},#{aScore},#{aModifyTime},#{isDelete})
     </insert>
 
     <update id="deleteAnswer" parameterType="Answer">
-        update exam_answer set is_delete=#{is_delete} where a_id=#{a_id}
+        update exam_answer set is_delete=#{isDelete} where a_id=#{aId}
     </update>
 
     <update id="modifyAnswer" parameterType="Answer">
-        update exam_answer set type=#{type} and a_topc=#{a_topic} and a_a=#{a_a} and a_b=#{a_b} and a_c=#{a_c} and a_d=#{a_d} and c_id=#{c_id} and c_name=#{c_name}  and a_answer=#{a_answer} and a_score=#{a_score} and a_modify_time=#{a_modify_time} where a_id=#{a_id} and is_delete=0
+        update exam_answer set type=#{type} and a_topc=#{aTopic} and a_a=#{aA} and a_b=#{aB} and a_c=#{aC} and a_d=#{aD} and c_id=#{cId} and c_name=#{cName}  and a_answer=#{aAnswer} and a_score=#{aScore} and a_modify_time=#{aModifyTime} where a_id=#{aId} and is_delete=0
     </update>
 
-    <select id="getTopicInfo" resultType="Answer">
-        select * from exam_answer order by a_modify_time desc
+    <select id="getTopicInfo" parameterType="string" resultType="Answer">
+        select * from exam_answer where u_id=#{value} order by a_modify_time desc
     </select>
 
     <select id="getAnswerById" parameterType="string" resultType="Answer">
-        select * from exam_answer where a_id=#{a_id}
+        select * from exam_answer where a_id=#{aId}
     </select>
 </mapper>
