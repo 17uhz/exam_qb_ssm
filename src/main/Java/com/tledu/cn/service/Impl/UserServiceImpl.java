@@ -56,18 +56,19 @@ public class UserServiceImpl implements UserService {
 
     //用户登录
     @Override
-    public int userLogin(HttpServletRequest request,User user) {
-        int result = 0;
+    public User userLogin(HttpServletRequest request,User user) {
+//        int result = 0;
         if (user==null || user.getAcc().equals("") || user.getPwd().equals("")){
-            return result;
+            return user;
+        }else {
+            User getUser = userDao.userLogin(user);
+//        if (getUser != null){
+//            request.getSession().setAttribute("status",1);
+//            request.getSession().setAttribute("Info",getUser);
+//            result = 1;
+//        }
+            return getUser;
         }
-        User getUser = userDao.userLogin(user);
-        if (getUser != null){
-            request.getSession().setAttribute("status",1);
-            request.getSession().setAttribute("Info",getUser);
-            result = 1;
-        }
-        return result;
     }
 
     //更改密码
@@ -169,7 +170,7 @@ public class UserServiceImpl implements UserService {
 
     //添加分类
     @Override
-    public int addClassify(HttpServletRequest request,Classify classify) {
+    public int addClassify(Classify classify) {
         int result=0;
         if(classify==null){
             return result;
@@ -177,8 +178,6 @@ public class UserServiceImpl implements UserService {
         List<Classify> classifyList=userDao.selectClassify(classify);
         if (classifyList.size()==0){
             classify.setC_id(UUID.randomUUID().toString());
-            User user=(User)request.getSession().getAttribute("Info");
-            classify.setU_id(user.getU_id());
             classify.setCreat_time(TimeUtil.createTime());
             classify.setIs_delete(0);
             int i=userDao.addClassify(classify);
@@ -198,9 +197,9 @@ public class UserServiceImpl implements UserService {
 
     //显示分类
     @Override
-    public List<Classify> getClassifyInfo(HttpServletRequest request) {
-        User user=(User)request.getSession().getAttribute("Info");
-        List<Classify> classifyList=userDao.getClassifyInfo(user);
+    public List<Classify> getClassifyInfo(Classify classify) {
+//        User user=(User)request.getSession().getAttribute("Info");
+        List<Classify> classifyList=userDao.getClassifyInfo(classify);
         return classifyList;
     }
 
@@ -214,8 +213,6 @@ public class UserServiceImpl implements UserService {
         List<Answer> answerList=userDao.selectAnswer(answer);
         if (answerList==null){
             answer.setA_id(UUID.randomUUID().toString());
-            User user=(User)request.getSession().getAttribute("Info");
-            answer.setU_id(user.getU_id());
             Classify classify=userDao.selectClassifyID(answer);
             answer.setC_id(classify.getC_id());
             answer.setA_modify_time(TimeUtil.createTime());

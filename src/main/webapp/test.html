@@ -15,6 +15,11 @@
     <input type="file" name="file1"> <br>
     <button>上传</button>
 </form>
+<hr/>
+<!--测试分类-->
+分类名：<input type="text" id="c_name">
+<button onclick="addClassify()">添加分类</button>
+
 
 </body>
 <script src="js/jquery-3.5.1.js"></script>
@@ -31,6 +36,22 @@
             type:"post",
             // data:JsonDate,
             data:JSON.stringify(JsonDate),
+            contentType:"application/json",
+            dataType:"json",
+            success:function (result){
+                console.log(result);
+            }
+        })
+    }
+
+
+    function addClassify(){
+        let jsondata={};
+        jsondata.c_name=$("#c_name").val();
+        $.ajax({
+            url:"http://localhost:8080/exam_qb_ssm/addClassify",
+            type:"post",
+            data:JSON.stringify(jsondata),
             contentType:"application/json",
             dataType:"json",
             success:function (result){

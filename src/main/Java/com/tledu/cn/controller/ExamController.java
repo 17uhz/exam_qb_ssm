@@ -42,33 +42,33 @@ public class ExamController {
     //用户登录
     @RequestMapping("/userLogin")
     @ResponseBody
-    public Map<String,String> userLogin(HttpServletRequest request,@RequestBody User user){
-        int result = 0;
-        Map<String,String> param = new HashMap<String, String>();
-        result = userService.userLogin(request, user);
-        if (result==1){
-            param.put("mark","true");
-        }else {
-            param.put("mark","false");
-        }
-        return param;
+    public User userLogin(HttpServletRequest request,@RequestBody User user){
+
+//        Map<String,String> param = new HashMap<String, String>();
+        User getUser= userService.userLogin(request, user);
+//        if (getUser){
+//            param.put("mark","true");
+//        }else {
+//            param.put("mark","false");
+//        }
+        return getUser;
     }
 
     //验证登录状态信息
-    @RequestMapping("/getUserInfo")
-    @ResponseBody
-    public Map<String,Object> getUserInfo(HttpServletRequest request){
-        int status = (Integer) request.getSession().getAttribute("status");
-        User user = (User) request.getSession().getAttribute("Info");
-        Map<String,Object> param = new HashMap<String ,Object>();
-        if (status==1){
-            param.put("status",status);
-            param.put("Info",user);
-        }else {
-            param.put("status",0);
-        }
-        return param;
-    }
+//    @RequestMapping("/getUserInfo")
+//    @ResponseBody
+//    public Map<String,Object> getUserInfo(HttpServletRequest request){
+//        int status = (Integer) request.getSession().getAttribute("status");
+//        User user = (User) request.getSession().getAttribute("Info");
+//        Map<String,Object> param = new HashMap<String ,Object>();
+//        if (status==1){
+//            param.put("status",status);
+//            param.put("Info",user);
+//        }else {
+//            param.put("status",0);
+//        }
+//        return param;
+//    }
 
     //更改密码
     @RequestMapping("/changePwd")
@@ -103,7 +103,10 @@ public class ExamController {
     @RequestMapping("/addClassify")
     @ResponseBody
     public Map<String,Integer> addClassify(HttpServletRequest request,@RequestBody Classify classify){
-        int i=userService.addClassify(request,classify);
+        System.out.println(classify);
+        classify.setU_id("1");
+        System.out.println(classify);
+        int i=userService.addClassify(classify);
         Map<String,Integer> param=new HashMap<String, Integer>();
         param.put("mark",i);
         return param;
@@ -123,8 +126,8 @@ public class ExamController {
     //显示分类
     @RequestMapping("/getClassifyInfo")
     @ResponseBody
-    public Map<String, List<Classify>> getClassifyInfo(HttpServletRequest request){
-        List<Classify> classifyList=userService.getClassifyInfo(request);
+    public Map<String, List<Classify>> getClassifyInfo(@RequestBody Classify classify){
+        List<Classify> classifyList=userService.getClassifyInfo(classify);
         Map<String,List<Classify>> param=new HashMap<String, List<Classify>>();
         param.put("classifyList",classifyList);
         return param;

@@ -24,7 +24,7 @@ public interface UserDao {
     List<Classify> selectClassify(Classify classify); //查看 分类名 是否存在
     int addClassify(Classify classify);
     int deleteClassify(Classify classify);
-    List<Classify> getClassifyInfo(User user);
+    List<Classify> getClassifyInfo(Classify classify);
 
     List<Answer> selectAnswer(Answer answer);//查看 题目名 是否存在
     Classify selectClassifyID(Answer answer);

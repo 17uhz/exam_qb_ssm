@@ -18,13 +18,13 @@ import java.util.Map;
 public interface UserService {
     //用户
     int registerUser(User user);
-    int userLogin(HttpServletRequest request, User user);
+    User userLogin(HttpServletRequest request, User user);
     int changePwd(User user);
     Map<String,Boolean> uploadImage(HttpServletRequest request);
     //分类
-    int addClassify(HttpServletRequest request,Classify classify);
+    int addClassify(Classify classify);
     int deleteClassify(Classify classify);
-    List<Classify> getClassifyInfo(HttpServletRequest request);
+    List<Classify> getClassifyInfo(Classify classify);
     //题目
     int addAnswer(HttpServletRequest request, Answer answer);
     int deleteAnswer(ArrayList<String> IdList);

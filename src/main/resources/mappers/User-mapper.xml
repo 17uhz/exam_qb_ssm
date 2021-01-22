@@ -14,7 +14,7 @@
     </select>
 
     <select id="userLogin" parameterType="User" resultType="User">
-        select * from exam_user where acc=#{acc} and pwd=#{pwd} and is_delete=0
+        select * from exam_user where acc=#{acc} and pwd=#{pwd} and is_delete=0 and is_allow=1
     </select>
 
     <select id="selectUserAccPhone" parameterType="User" resultType="User">
@@ -29,28 +29,28 @@
         update exam_user set image=#{image} where u_id=#{u_id} and is_delete=0
     </update>
 
-    <select id="selectClassify" parameterType="string" resultType="Classify">
-        select * from exam_classify where c_name=#{c_name} and is_delete=0
+    <select id="selectClassify" parameterType="Classify" resultType="Classify">
+        select * from exam_classify where c_name=#{c_name} and u_id=#{u_id} and is_delete=0
     </select>
 
     <insert id="addClassify" parameterType="Classify">
         insert into exam_classify values (#{c_id},#{c_name},#{u_id},#{creat_time},#{is_delete})
     </insert>
 
-    <delete id="deleteClassify" parameterType="String">
-        update exam_classify set is_delete=#{is_delete} where c_name=#{c_name}
+    <delete id="deleteClassify" parameterType="Classify">
+        update exam_classify set is_delete=#{is_delete} where c_name=#{c_name} and u_id=#{u_id}
     </delete>
 
-    <select id="getClassifyInfo" parameterType="string" resultType="Classify">
+    <select id="getClassifyInfo" parameterType="String" resultType="Classify">
         select * from exam_classify where u_id=#{u_id} and is_delete=0
     </select>
 
-    <select id="selectAnswer" parameterType="string" resultType="Answer">
-        select * from exam_answer where a_topic=#{a_topic} and is_delete=0
+    <select id="selectAnswer" parameterType="Answer" resultType="Answer">
+        select * from exam_answer where a_topic=#{a_topic} and u_id=#{u_id} and is_delete=0
     </select>
 
-    <select id="selectClassifyID" parameterType="String" resultType="Classify">
-        select * from exam_classify where c_name=#{c_name}
+    <select id="selectClassifyID" parameterType="Answer" resultType="Classify">
+        select * from exam_classify where c_name=#{c_name} and u_id=#{u_id}
     </select>
 
     <insert id="addAnswer" parameterType="Answer">
