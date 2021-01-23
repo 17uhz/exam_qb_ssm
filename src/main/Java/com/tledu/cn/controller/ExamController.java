@@ -125,7 +125,6 @@ public class ExamController {
     @RequestMapping("/getClassifyInfo")
     @ResponseBody
     public Map<String, List<Classify>> getClassifyInfo(@RequestBody Classify classify){
-        classify.setuId("1");
         List<Classify> classifyList=userService.getClassifyInfo(classify);
         Map<String,List<Classify>> param=new HashMap<String, List<Classify>>();
         param.put("classifyList",classifyList);
@@ -144,7 +143,8 @@ public class ExamController {
     //题目删除
     @RequestMapping("/deleteAnswer")
     @ResponseBody
-    public Map<String,Boolean> deleteAnswer(@RequestBody Map<String, ArrayList<String>> param){
+    public Map<String,Boolean> deleteAnswer(@RequestBody Map<String, ArrayList<Answer>> param){
+        System.out.println(param);
         int n=userService.deleteAnswer(param.get("deleteAnswer"));
         Map<String,Boolean> map=new HashMap<String, Boolean>();
         if(n==param.get("deleteAnswer").size()){

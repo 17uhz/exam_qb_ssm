@@ -4,14 +4,14 @@ public class Classify {
     private String cId;
     private String cName;
     private String uId;
-    private String creatTime;
+    private String createTime;
     private int isDelete;
 
-    public Classify(String cId, String cName, String uId, String creatTime, int isDelete) {
+    public Classify(String cId, String cName, String uId, String createTime, int isDelete) {
         this.cId = cId;
         this.cName = cName;
         this.uId = uId;
-        this.creatTime = creatTime;
+        this.createTime = createTime;
         this.isDelete = isDelete;
     }
 
@@ -42,12 +42,12 @@ public class Classify {
         this.uId = uId;
     }
 
-    public String getCreatTime() {
-        return creatTime;
+    public String getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatTime(String creatTime) {
-        this.creatTime = creatTime;
+    public void setCreatTime(String createTime) {
+        this.createTime = createTime;
     }
 
     public int getIsDelete() {
@@ -64,7 +64,7 @@ public class Classify {
                 "cId='" + cId + '\'' +
                 ", cName='" + cName + '\'' +
                 ", uId='" + uId + '\'' +
-                ", creatTime='" + creatTime + '\'' +
+                ", creatTime='" + createTime + '\'' +
                 ", isDelete=" + isDelete +
                 '}';
     }
