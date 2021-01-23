@@ -16,6 +16,19 @@
     <button>上传</button>
 </form>
 
+<input id="acc1" type="text">
+<input id="pwd1" type="text">
+<button onclick="Login()">登录</button>
+
+
+<hr/>
+<!--测试分类-->
+分类名：<input type="text" id="c_name">
+<button onclick="addClassify()">添加分类</button>
+<button onclick="deleteClassify()">删除分类</button>
+<button onclick="getClassifyInfo()">显示分类</button>
+<div id="div"></div>
+
 </body>
 <script src="js/jquery-3.5.1.js"></script>
 <script>
@@ -35,6 +48,71 @@
             dataType:"json",
             success:function (result){
                 console.log(result);
+            }
+        })
+    }
+
+
+    function addClassify(){
+        let jsondata={};
+        jsondata.cName=$("#c_name").val();
+        $.ajax({
+            url:"http://localhost:8080/exam_qb_ssm/addClassify",
+            type:"post",
+            data:JSON.stringify(jsondata),
+            contentType:"application/json",
+            dataType:"json",
+            success:function (result){
+                console.log(result);
+            }
+        })
+    }
+
+    function Login(){
+        let jsondata={};
+        jsondata.acc=$("#acc1").val();
+        jsondata.pwd=$("#pwd1").val();
+        $.ajax({
+            url:"http://localhost:8080/exam_qb_ssm/userLogin",
+            type:"post",
+            data:JSON.stringify(jsondata),
+            contentType:"application/json",
+            dataType:"json",
+            success:function (result){
+                console.log(result);
+
+            }
+        })
+    }
+
+    function deleteClassify(){
+        let jsondata={};
+        jsondata.cName=$("#c_name").val();
+        $.ajax({
+            url:"http://localhost:8080/exam_qb_ssm/deleteClassify",
+            type:"post",
+            data:JSON.stringify(jsondata),
+            contentType:"application/json",
+            dataType:"json",
+            success:function (result){
+                console.log(result);
+            }
+        })
+    }
+    function getClassifyInfo(){
+        let jsondata={};
+        // jsondata.cName=$("#c_name").val();
+        $.ajax({
+            url:"http://localhost:8080/exam_qb_ssm/getClassifyInfo",
+            type:"post",
+            data:JSON.stringify(jsondata),
+            contentType:"application/json",
+            dataType:"json",
+            success:function (result){
+                console.log(result);
+                for(var i=0;result.classifyList.length;i++){
+                    $("#div").append(result.classifyList[i].cName);
+                }
             }
         })
     }

@@ -1,8 +1,13 @@
 package com.tledu.cn.service.Impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.tledu.cn.dao.UserDao;
+import com.tledu.cn.pojo.Answer;
+import com.tledu.cn.pojo.Classify;
 import com.tledu.cn.pojo.User;
 import com.tledu.cn.service.UserService;
+import com.tledu.cn.util.PageUtils;
 import com.tledu.cn.util.TimeUtil;
 import com.tledu.cn.util.UpLoadUtil;
 import org.apache.commons.fileupload.FileItem;
@@ -18,10 +23,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Author:17
@@ -42,10 +44,10 @@ public class UserServiceImpl implements UserService {
         }
         List<User> users = userDao.selectUser(user);
         if (users.size()==0){
-            user.setU_id(UUID.randomUUID().toString());
-            user.setIs_delete(0);
-            user.setCreate_time(TimeUtil.createTime());
-            user.setIs_allow(1);
+            user.setuId(UUID.randomUUID().toString());
+            user.setIsDelete(0);
+            user.setCreateTime(TimeUtil.createTime());
+            user.setIsAllow(1);
             user.setImage("../image/init/init.jpg");
             result = userDao.registerUser(user);
         }
@@ -54,18 +56,19 @@ public class UserServiceImpl implements UserService {
 
     //用户登录
     @Override
-    public int userLogin(HttpServletRequest request,User user) {
-        int result = 0;
+    public User userLogin(HttpServletRequest request,User user) {
+//        int result = 0;
         if (user==null || user.getAcc().equals("") || user.getPwd().equals("")){
-            return result;
+            return user;
+        }else {
+            User getUser = userDao.userLogin(user);
+//        if (getUser != null){
+//            request.getSession().setAttribute("status",1);
+//            request.getSession().setAttribute("Info",getUser);
+//            result = 1;
+//        }
+            return getUser;
         }
-        User getUser = userDao.userLogin(user);
-        if (getUser != null){
-            request.getSession().setAttribute("status",1);
-            request.getSession().setAttribute("Info",getUser);
-            result = 1;
-        }
-        return result;
     }
 
     //更改密码
@@ -165,5 +168,97 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
+    //添加分类
+    @Override
+    public int addClassify(Classify classify) {
+        int result=0;
+        if(classify==null){
+            return result;
+        }
+        List<Classify> classifyList=userDao.selectClassify(classify);
+        if (classifyList.size()==0){
+            classify.setcId(UUID.randomUUID().toString());
+            classify.setCreatTime(TimeUtil.createTime());
+            classify.setIsDelete(0);
+            int i=userDao.addClassify(classify);
+            result=i;
+        }
+        return result;
+    }
 
+    //删除分类
+    @Override
+    public int deleteClassify(Classify classify) {
+        int result=0;
+        classify.setIsDelete(1);
+        result =userDao.deleteClassify(classify);
+        return result;
+    }
+
+    //显示分类
+    @Override
+    public List<Classify> getClassifyInfo(Classify classify) {
+//        User user=(User)request.getSession().getAttribute("Info");
+        List<Classify> classifyList=userDao.getClassifyInfo(classify);
+        return classifyList;
+    }
+
+    //添加题目
+    @Override
+    public int addAnswer(HttpServletRequest request, Answer answer) {
+        int result=0;
+        if (answer==null){
+            return result;
+        }
+        List<Answer> answerList=userDao.selectAnswer(answer);
+        if (answerList==null){
+            answer.setaId(UUID.randomUUID().toString());
+            Classify classify=userDao.selectClassifyID(answer);
+            answer.setcId(classify.getcId());
+            answer.setaModifyTime(TimeUtil.createTime());
+            answer.setIsDelete(0);
+            result=userDao.addAnswer(answer);
+        }
+        return result;
+    }
+
+    //删除题目
+    @Override
+    public int deleteAnswer(ArrayList<String> IdList) {
+        int n=0;
+        for (int i=0;i<=IdList.size();i++){
+            Answer answer=new Answer();
+            answer.setaId(IdList.get(i));
+            answer.setIsDelete(1);
+            n=n+(userDao.deleteAnswer(answer));
+        }
+        return n;
+    }
+
+    //修改题目
+    @Override
+    public int modifyAnswer(Answer answer) {
+        Classify classify=userDao.selectClassifyID(answer);
+        answer.setcId(classify.getcId());
+        answer.setaModifyTime(TimeUtil.createTime());
+        int i=userDao.modifyAnswer(answer);
+        return i;
+    }
+
+    //题目显示
+    @Override
+    public PageUtils getTopicInfo(Map<String, Object> param) {
+        PageHelper.offsetPage(Integer.parseInt(param.get("offset").toString()),Integer.parseInt(param.get("pageSize").toString()));
+        List<Answer> answerList=userDao.getTopicInfo((String) param.get("uId"));
+        PageInfo<Answer> pageInfo=new PageInfo<Answer>(answerList);
+        return new PageUtils(new Long(pageInfo.getTotal()).intValue(),pageInfo.getList());
+    }
+
+    //显示单道题目
+
+    @Override
+    public Answer getAnswerById(Answer answer) {
+        Answer answer1=userDao.getAnswerById(answer);
+        return answer1;
+    }
 }
