@@ -2,7 +2,7 @@ package com.tledu.cn.pojo;
 
 public class Answer {
     private String aId;
-    private String type;
+    private String aType;
     private String aTopic;
     private String uId;
     private String aA;
@@ -16,9 +16,9 @@ public class Answer {
     private String aModifyTime;
     private int isDelete;
 
-    public Answer(String aId, String type, String aTopic, String uId, String aA, String aB, String aC, String aD, String cId, String cName, String aAnswer, int aScore, String aModifyTime, int isDelete) {
+    public Answer(String aId, String aType, String aTopic, String uId, String aA, String aB, String aC, String aD, String cId, String cName, String aAnswer, int aScore, String aModifyTime, int isDelete) {
         this.aId = aId;
-        this.type = type;
+        this.aType = aType;
         this.aTopic = aTopic;
         this.uId = uId;
         this.aA = aA;
@@ -44,12 +44,12 @@ public class Answer {
         this.aId = aId;
     }
 
-    public String getType() {
-        return type;
+    public String getaType() {
+        return aType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setaType(String aType) {
+        this.aType = aType;
     }
 
     public String getaTopic() {
@@ -152,7 +152,7 @@ public class Answer {
     public String toString() {
         return "Answer{" +
                 "aId='" + aId + '\'' +
-                ", type='" + type + '\'' +
+                ", type='" + aType + '\'' +
                 ", aTopic='" + aTopic + '\'' +
                 ", uId='" + uId + '\'' +
                 ", aA='" + aA + '\'' +

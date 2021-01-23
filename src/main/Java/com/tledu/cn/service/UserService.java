@@ -27,7 +27,7 @@ public interface UserService {
     List<Classify> getClassifyInfo(Classify classify);
     //题目
     int addAnswer(HttpServletRequest request, Answer answer);
-    int deleteAnswer(ArrayList<String> IdList);
+    int deleteAnswer(ArrayList<Answer> answerList);
     int modifyAnswer(Answer answer);
     PageUtils getTopicInfo(Map<String,Object> param);
     Answer getAnswerById(Answer answer);

@@ -211,7 +211,7 @@ public class UserServiceImpl implements UserService {
             return result;
         }
         List<Answer> answerList=userDao.selectAnswer(answer);
-        if (answerList==null){
+        if (answerList.size()==0){
             answer.setaId(UUID.randomUUID().toString());
             Classify classify=userDao.selectClassifyID(answer);
             answer.setcId(classify.getcId());
@@ -224,11 +224,11 @@ public class UserServiceImpl implements UserService {
 
     //删除题目
     @Override
-    public int deleteAnswer(ArrayList<String> IdList) {
+    public int deleteAnswer(ArrayList<Answer> answerList) {
         int n=0;
-        for (int i=0;i<=IdList.size();i++){
+        for (int i=0;i<answerList.size();i++){
             Answer answer=new Answer();
-            answer.setaId(IdList.get(i));
+            answer.setaId(answerList.get(i).getaId());
             answer.setIsDelete(1);
             n=n+(userDao.deleteAnswer(answer));
         }
