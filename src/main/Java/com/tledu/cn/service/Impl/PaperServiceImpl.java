@@ -106,7 +106,7 @@ public class PaperServiceImpl implements PaperService {
     //给试卷添加试题
     @Override
     public boolean addTestAnswer(ArrayList<AtTable> atTables) {
-        boolean result = true;
+        boolean result = false;
         for (int i =0;i<atTables.size();i++){
             Answer answer = paperDao.getAnswerById(atTables.get(i).getaId());
             if (answer!=null){
@@ -124,10 +124,9 @@ public class PaperServiceImpl implements PaperService {
                 atTables.get(i).setAtScore(answer.getaScore());
                 atTables.get(i).setAtModifyTime(answer.getaModifyTime());
                 atTables.get(i).setIsDelete(answer.getIsDelete());
-
                 int i1 = paperDao.addTestAnswer(atTables.get(i));
-                if (i1==0){
-                    result=false;
+                if (i1==1){
+                    result=true;
                     break;
                 }
             }

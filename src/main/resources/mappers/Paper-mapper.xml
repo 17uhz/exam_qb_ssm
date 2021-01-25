@@ -46,6 +46,7 @@
     <insert id="addTestAnswer" parameterType="AtTable">
         insert into exam_at_table values (
             #{atId},
+            #{aId},
             #{atType},
             #{atTopic},
             #{uId},
