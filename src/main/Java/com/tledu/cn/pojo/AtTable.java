@@ -7,6 +7,7 @@ package com.tledu.cn.pojo;
  */
 public class AtTable {
     private String atId;
+    private String aId;
     private String atType;
     private String atTopic;
     private String uId;
@@ -25,8 +26,9 @@ public class AtTable {
     public AtTable() {
     }
 
-    public AtTable(String atId, String atType, String atTopic, String uId, String atA, String atB, String atC, String atD, String cId, String cName, String atAnswer, int atScore, String tId, String atModifyTime, int isDelete) {
+    public AtTable(String atId, String aId, String atType, String atTopic, String uId, String atA, String atB, String atC, String atD, String cId, String cName, String atAnswer, int atScore, String tId, String atModifyTime, int isDelete) {
         this.atId = atId;
+        this.aId = aId;
         this.atType = atType;
         this.atTopic = atTopic;
         this.uId = uId;
@@ -47,6 +49,7 @@ public class AtTable {
     public String toString() {
         return "AtTable{" +
                 "atId='" + atId + '\'' +
+                ", aId='" + aId + '\'' +
                 ", atType='" + atType + '\'' +
                 ", atTopic='" + atTopic + '\'' +
                 ", uId='" + uId + '\'' +
@@ -62,6 +65,14 @@ public class AtTable {
                 ", atModifyTime='" + atModifyTime + '\'' +
                 ", isDelete=" + isDelete +
                 '}';
+    }
+
+    public String getaId() {
+        return aId;
+    }
+
+    public void setaId(String aId) {
+        this.aId = aId;
     }
 
     public String getAtId() {

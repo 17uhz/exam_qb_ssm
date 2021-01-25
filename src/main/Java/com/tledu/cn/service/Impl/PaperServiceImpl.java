@@ -108,8 +108,9 @@ public class PaperServiceImpl implements PaperService {
     public boolean addTestAnswer(ArrayList<AtTable> atTables) {
         boolean result = true;
         for (int i =0;i<atTables.size();i++){
-            Answer answer = paperDao.getAnswerById(atTables.get(i).getAtId());
+            Answer answer = paperDao.getAnswerById(atTables.get(i).getaId());
             if (answer!=null){
+                atTables.get(i).setAtId(UUID.randomUUID().toString());
                 atTables.get(i).setAtType(answer.getaType());
                 atTables.get(i).setAtTopic(answer.getaTopic());
                 atTables.get(i).setuId(answer.getuId());
