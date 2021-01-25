@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tledu.cn.dao.PaperDao">
+    <insert id="addTest" parameterType="Test">
+        insert into exam_test values (
+            #{tId},
+            #{tType},
+            #{title},
+            #{status},
+            #{uId},
+            #{tUrl},
+            #{tTime},
+            #{tBeginTime},
+            #{tEndTime},
+            #{tCreateTime},
+            #{isDelete}
+        )
+    </insert>
+    
+    <select id="onlyOneTest" parameterType="Test" resultType="Test">
+        select * from exam_test where is_delete=0 and u_id=#{uId} and title=#{title}
+    </select>
+
+    <select id="getTestInfo" parameterType="string" resultType="Test">
+        select * from exam_test where u_id=#{value} and is_delete=0
+    </select>
+    
+    <select id="getAtTableInfo" parameterType="Test" resultType="AtTable">
+        select * from exam_at_table where is_delete=0 and t_id=#{tId}
+    </select>
+    
+    <update id="deleteTestAnswer" parameterType="string">
+        update exam_at_table set is_delete=1 where at_id=#{value}
+    </update>
+    
+    <update id="deleteTestInfo" parameterType="string">
+        update exam_test set is_delete=1 where t_id=#{value}
+    </update>
+
+    <select id="getAnswerById" parameterType="string" resultType="Answer">
+        select * from exam_answer where a_id=#{value} and is_delete=0
+    </select>
+
+    <insert id="addTestAnswer" parameterType="AtTable">
+        insert into exam_at_table values (
+            #{atId},
+            #{atType},
+            #{atTopic},
+            #{uId},
+            #{atA},
+            #{atB},
+            #{atC},
+            #{atD},
+            #{cId},
+            #{cName},
+            #{atAnswer},
+            #{atScore},
+            #{tId},
+            #{atModifyTime},
+            #{isDelete}
+        )
+    </insert>
+
+
+</mapper>
