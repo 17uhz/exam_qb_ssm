@@ -107,7 +107,8 @@ public class PaperServiceImpl implements PaperService {
     @Override
     public boolean addTestAnswer(ArrayList<AtTable> atTables) {
         boolean result = false;
-        for (int i =0;i<atTables.size();i++){
+        int i =0;
+        for (i =0;i<atTables.size();i++){
             Answer answer = paperDao.getAnswerById(atTables.get(i).getaId());
             if (answer!=null){
                 atTables.get(i).setAtId(UUID.randomUUID().toString());
@@ -125,13 +126,14 @@ public class PaperServiceImpl implements PaperService {
                 atTables.get(i).setAtModifyTime(answer.getaModifyTime());
                 atTables.get(i).setIsDelete(answer.getIsDelete());
                 int i1 = paperDao.addTestAnswer(atTables.get(i));
-                if (i1==1){
-                    result=true;
+                if (i1==0){
                     break;
                 }
             }
         }
-
+        if (i==atTables.size()){
+            result=true;
+        }
         return result;
     }
 
