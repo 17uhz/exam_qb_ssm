@@ -1,12 +1,16 @@
 package com.tledu.cn.service.Impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.tledu.cn.dao.TestDao;
 import com.tledu.cn.pojo.AnswerResult;
 import com.tledu.cn.pojo.AtTable;
 import com.tledu.cn.pojo.Examinee;
 import com.tledu.cn.pojo.Test;
 import com.tledu.cn.service.TestService;
+import com.tledu.cn.util.PageUtils;
 import com.tledu.cn.util.TimeUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,6 +20,7 @@ import java.util.UUID;
 
 @Service
 public class TestServiceImpl implements TestService {
+    @Autowired
     private TestDao testDao;
     //修改考试信息
     @Override
@@ -62,9 +67,11 @@ public class TestServiceImpl implements TestService {
 
     //查看试卷考试考生详情信息
     @Override
-    public List<Examinee> getExamineeInfo(Map<String, Object> params) {
-        List<Examinee> examineeList=testDao.getExamineeInfo(params.get("tId").toString());
-        return examineeList;
+    public PageUtils getExamineeInfo(Map<String, Object> params) {
+        PageHelper.offsetPage(Integer.parseInt(params.get("offset").toString()),Integer.parseInt(params.get("pageSize").toString()));
+        List<Examinee> examineeList = testDao.getExamineeInfo(params.get("tId").toString());
+        PageInfo<Examinee> testPageInfo = new PageInfo<>(examineeList);
+        return new PageUtils(new Long(testPageInfo.getTotal()).intValue(),testPageInfo.getList());
     }
 
     //得到试卷基本信息
@@ -87,10 +94,12 @@ public class TestServiceImpl implements TestService {
     @Override
     public Examinee submitAnswer(AnswerResult answerResult) {
         int score=0;
-        List<AtTable> atTableList=answerResult.getAnswerResult();
-        for (int i=0;i<atTableList.size();i++){
-            AtTable atTable=testDao.submitAnswer(atTableList.get(i));
-            score+=atTable.getAtScore();
+        List<AtTable> atTableList=answerResult.getaResult();
+        for (int i=0;i<atTableList.size();i++) {
+            AtTable atTable = testDao.submitAnswer(atTableList.get(i));
+            if (atTable != null) {
+                score += atTable.getAtScore();
+            }
         }
         Examinee examinee=new Examinee();
         examinee.seteScore(score);

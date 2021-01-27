@@ -2,6 +2,7 @@ package com.tledu.cn.controller;
 
 import com.tledu.cn.pojo.*;
 import com.tledu.cn.service.TestService;
+import com.tledu.cn.util.PageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -55,9 +56,9 @@ public class TestController {
     //查看试卷考试考生详情信息
     @RequestMapping("/getExamineeInfo")
     @ResponseBody
-    public List<Examinee> getExamineeInfo(@RequestBody Map<String,Object> params){
-        List<Examinee> examineeList=testService.getExamineeInfo(params);
-        return examineeList;
+    public PageUtils getExamineeInfo(@RequestBody Map<String,Object> params){
+        PageUtils pageUtils=testService.getExamineeInfo(params);
+        return pageUtils;
     }
 
     //得到试卷基本信息

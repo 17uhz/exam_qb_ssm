@@ -7,7 +7,7 @@
         update exam_test set status=#{status},t_time=#{tTime},t_begin_time=#{tBeginTime},t_end_time=#{tEndTime} where t_id=#{tId}
     </update>
     <insert id="addExamineeLogin" parameterType="Test">
-        insert into exam_examinee values(e_id=#{eId},login_time=#{loginTime},is_delete=0)
+        insert into exam_examinee values(#{eId},#{eAcc},#{eName},#{eScore},#{loginTime},#{beginTime},#{endTime},#{status},#{tId},#{tTime},0)
     </insert>
     <select id="selectTestTime" parameterType="string" resultType="Test">
         select * from exam_test where t_id=#{tId} and is_delete=0;

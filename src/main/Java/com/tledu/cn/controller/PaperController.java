@@ -20,7 +20,7 @@ import java.util.Map;
  * Description:<描述>
  */
 @Controller
-public class PaperController {
+public class    PaperController {
     @Autowired
     private PaperService paperService;
 

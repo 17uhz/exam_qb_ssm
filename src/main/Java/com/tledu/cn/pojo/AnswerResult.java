@@ -5,11 +5,11 @@ import java.util.Map;
 
 public class AnswerResult {
     private String eId;
-    private ArrayList<AtTable> AnswerResult;
+    private ArrayList<AtTable> aResult;
 
-    public AnswerResult(String eId, ArrayList<AtTable> answerResult) {
+    public AnswerResult(String eId, ArrayList<AtTable> aResult) {
         this.eId = eId;
-        AnswerResult = answerResult;
+        this.aResult = aResult;
     }
 
     public AnswerResult() {
@@ -23,19 +23,19 @@ public class AnswerResult {
         this.eId = eId;
     }
 
-    public ArrayList<AtTable> getAnswerResult() {
-        return AnswerResult;
+    public ArrayList<AtTable> getaResult() {
+        return aResult;
     }
 
-    public void setAnswerResult(ArrayList<AtTable> answerResult) {
-        AnswerResult = answerResult;
+    public void setaResult(ArrayList<AtTable> aResult) {
+        this.aResult = aResult;
     }
 
     @Override
     public String toString() {
         return "AnswerResult{" +
                 "eId='" + eId + '\'' +
-                ", AnswerResult=" + AnswerResult +
+                ", aResult=" + aResult +
                 '}';
     }
 }
