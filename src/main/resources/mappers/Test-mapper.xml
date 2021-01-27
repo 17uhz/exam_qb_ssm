@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tledu.cn.dao.TestDao">
+    <update id="updateTestTime" parameterType="Test">
+        update exam_test set status=#{status},t_time=#{tTime},t_begin_time=#{tBeginTime},t_end_time=#{tEndTime} where t_id=#{tId}
+    </update>
+    <insert id="addExamineeLogin" parameterType="Test">
+        insert into exam_examinee values(e_id=#{eId},login_time=#{loginTime},is_delete=0)
+    </insert>
+    <select id="selectTestTime" parameterType="string" resultType="Test">
+        select * from exam_test where t_id=#{tId} and is_delete=0;
+    </select>
+    <update id="addExamineeName" parameterType="string">
+        update exam_examinee set e_name=#{eName},begin_time=#{beginTime},status=#{status},t_id=#{tId},t_time=#{tTime} where e_id=#{eId}
+    </update>
+    <select id="getExamineeInfo" parameterType="string" resultType="Examinee">
+        select * from exam_examinee where t_id=#{value} and is_delete=0
+    </select>
+    <select id="getTestBasicInfo" parameterType="string" resultType="Test">
+        select * from exam_test where t_id=#{tId} and is_delete=0
+    </select>
+    <select id="getExamPaperInfo" parameterType="string" resultType="AtTable">
+        select * from exam_at_table where t_id=#{tId} and is_delete=0
+    </select>
+    <select id="submitAnswer" parameterType="AtTable" resultType="AtTable">
+        select * from exam_at_table where at_id=#{atId} and at_answer=#{atAnswer} and is_delete=0;
+    </select>
+    <update id="addExamineeScore" parameterType="Examinee">
+        update exam_examinee set e_score=#{eScore},end_time=#{endTime} where e_id=#{eId} and is_delete=0
+    </update>
+    <select id="getExamineeResult" parameterType="string" resultType="Examinee">
+        select * from exam_examinee where e_id=#{value} and is_delete=0
+    </select>
+</mapper>
