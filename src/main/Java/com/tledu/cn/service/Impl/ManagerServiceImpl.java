@@ -61,6 +61,7 @@ public class ManagerServiceImpl implements ManagerService {
         List<Menu> menuList=(List<Menu>)redisUtil.get("menuList");
         if (menuList==null){
             menuList=managerDao.showMenu();
+            redisUtil.set("menuList",menuList);
         }
         return menuList;
     }
