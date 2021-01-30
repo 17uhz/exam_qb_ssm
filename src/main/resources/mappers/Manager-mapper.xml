@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tledu.cn.dao.ManagerDao">
     <select id="managerLogin" parameterType="Manager" resultType="Manager">
-        select * from exam_manager where m_acc=#{mAcc} and m_pwd=#{mPwd} and isDelete=0
+        select * from exam_manager where m_acc=#{mAcc} and m_pwd=#{mPwd} and is_delete=0
     </select>
     <insert id="addMenu" parameterType="Menu">
         insert into exam_menu values(#{menuId},#{menuName},#{menuLevel},#{createTime},#{isDelete})
@@ -13,7 +13,7 @@
         update exam_menu set is_delete=1 where menu_id=#{menuId}
     </update>
     <select id="showMenu" resultType="Menu">
-        select * from exam_menu where is_delete=0
+        select * from exam_menu where is_delete=0 order by create_time
     </select>
     <update id="initPwd" parameterType="User">
         update exam_user set pwd=#{pwd} where u_id=#{uId} and is_delete=0
@@ -22,7 +22,7 @@
         update exam_user set is_allow=#{isAllow} where u_id=#{uId} and is_delete=0
     </update>
     <update id="deleteUser" parameterType="string">
-        update exma_user set is_delete=1 where u_id=#{uId}
+        update exam_user set is_delete=1 where u_id=#{uId}
     </update>
     <select id="managerGetUserInfo" resultType="User">
         select * from exam_user where is_delete=0

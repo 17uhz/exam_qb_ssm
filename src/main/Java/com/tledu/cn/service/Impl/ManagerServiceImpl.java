@@ -77,6 +77,11 @@ public class ManagerServiceImpl implements ManagerService {
     //修改用户权限
     @Override
     public int updateIsAllow(User user) {
+        if(user.getIsAllow()==0){
+            user.setIsAllow(1);
+        }else if(user.getIsAllow()==1){
+            user.setIsAllow(0);
+        }
         int i=managerDao.updateIsAllow(user);
         return i;
     }
