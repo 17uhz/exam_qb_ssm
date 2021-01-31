@@ -9,13 +9,17 @@
 	<id>exam_qb_ssm</id>
 
 	<classpath>
-		<dir name="D:/IDEA/exam_qb_ssm/target/classes">
+<!--		<dir name="D:/IDEA/exam_qb_ssm/target/classes">-->
+<!--		</dir>-->
+		<dir name="E:/20stu_File/ideaProject/exam_qb_ssm/target/classes">
 		</dir>
 	</classpath>
 
 	<web>
 		<link target="/">
-			<dir name="D:/IDEA/exam_qb_ssm/src/main/webapp">
+<!--			<dir name="D:/IDEA/exam_qb_ssm/src/main/webapp">-->
+<!--			</dir>-->
+			<dir name="E:/20stu_File/ideaProject/exam_qb_ssm/src/main/webapp">
 			</dir>
 		</link>
 	</web>
