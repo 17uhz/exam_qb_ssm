@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 //允许跨域
-@Component
-@WebFilter(filterName = "CORSFilter", urlPatterns = {"/*"})
+//@Component
+//@WebFilter(filterName = "CORSFilter", urlPatterns = {"/*"})
 public class CorsFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -19,7 +19,7 @@ public class CorsFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-
+        System.out.println("---------------------111111111111111---------------");
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpServletRequest request = (HttpServletRequest)servletRequest;
 

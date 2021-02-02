@@ -12,7 +12,7 @@
     <select id="selectTestTime" parameterType="string" resultType="Test">
         select * from exam_test where t_id=#{tId} and is_delete=0;
     </select>
-    <update id="addExamineeName" parameterType="string">
+    <update id="addExamineeName" parameterType="Examinee">
         update exam_examinee set e_name=#{eName},begin_time=#{beginTime},status=#{status},t_id=#{tId},t_time=#{tTime} where e_id=#{eId}
     </update>
     <select id="getExamineeInfo" parameterType="string" resultType="Examinee">
